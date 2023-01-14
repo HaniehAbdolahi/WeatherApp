@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=<1.0>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -18,120 +18,125 @@
       src="https://kit.fontawesome.com/9bcc7748b9.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <title>Weather App</title>
   </head>
   <body>
     <div class="container">
-      <div class="weatherApp border">
-        <div class="row px-1 py-1">
-          <div class="col-8 searchBox">
-            <div class="input-group rounded">
-              <input
-                id="search-box"
-                type="search"
-                class="form-control rounded"
-                placeholder="Search"
-                aria-label="Search"
-                aria-describedby="search-addon"
-              />
-              <span class="input-group-text" id="search-addon">
-                <span style="padding: 1px">
-                  <button type="submit"><i class="fas fa-search"></i></button>
+      <form id="temp-form">
+        <div class="weatherApp border">
+          <div class="row px-1 py-1">
+            <div class="col-8 searchBox">
+              <div class="input-group rounded">
+                <input
+                  id="search-box"
+                  type="search"
+                  class="form-control rounded"
+                  placeholder="Search"
+                  aria-label="Search"
+                  aria-describedby="search-addon"
+                />
+                <span class="input-group-text" id="search-addon">
+                  <span style="padding: 1px">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                  </span>
+                  <span>
+                    <button type="button" id="current-location">
+                      <i class="fas fa-thumb-tack"></i></button
+                  ></span>
                 </span>
-                <span>
-                  <button type="button" id="current">
-                    <i class="fas fa-thumb-tack"></i></button
-                ></span>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="row p-1">
-          <div class="col-8">
-            Weather in <lable class="" id="city-name">...</lable>
-          </div>
-          <div class="col-4">
-            <h6 class="title">Future Of Weather</h6>
-          </div>
-        </div>
-        <div class="row p-1 g-1">
-          <div class="col-8 p-1">
-            <div class="card">
-              <img src="images/sun.jpg" class="card-img-top" alt="Weather" />
-              <div class="card-body">
-                <h5 class="card-title">
-                    <span id="current-temp"> 12 </span> 
-                    <span class="units"><a id="celsius" href="">°C</a>/ <a id="fahrenheit" href="">°F</a></span>
-                </h5>
-                  <h6 class="card-subtitle text-muted RealTime">../..</h6>                           
-                <p class="card-text">
-                   <ul class="list-group list-group-flush">
-                      <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-6">Humidity  </div>
-                            <div id="humidity" class="col-6"> ...%
-                              </div>
-                              </div>
-                       </li>
-                      <li class="list-group-item"> 
-                        <div class="row">
-                            <div class="col-6">Pressure  </div>
-                            <div id="pressure" class="col-6"> ... hPa
-                              </div>
-                              </div>
-                      </li>
-                      <li class="list-group-item" >
-                        <div class="row">
-                            <div class="col-6">Wind  </div>
-                            <div id="wind-speed" class="col-6"> ... m/s     </div>
-                              </div>
-                       </li>
-                      <li class="list-group-item" >
-                        <div class="row">
-                            <div class="col-6">Sunrise  </div>
-                            <div id="sunrise" class="col-6"> .. : ..     </div>
-                              </div>
-                      </li>
-                      <li class="list-group-item" >
-                        <div class="row">
-                            <div class="col-6">Sunset  </div>
-                            <div id="sunset" class="col-6"> .. : ..    </div>
-                              </div>
-                       </li>
-                   </ul>
-                </p>
               </div>
             </div>
+            <div class="col-4">Date : <span class="realDate"></span></div>
           </div>
-          <div class="col-4">
-            <div class="row p-1 g-1">
-                <div class="card">
-                      <img src="images/cloud.jpg" class="card-img-top" alt="...">
-                  <h5 class="card-title"> ..°C </h5>
-                </div>
+          <div class="row p-1">
+            <div class="col-8">
+              Weather in <strong class="" id="city-name">...</strong>
             </div>
-            <div class="row p-1 g-1">
-                <div class="card">
-                      <img src="images/snow.jpg" class="card-img-top" alt="...">
-                  <h5 class="card-title"> ..°C </h5>
-                </div>
+            <div class="col-4">
+              <h6 class="title">Future of weather</h6>
             </div>
-             <div class="row p-1 g-1">
-                <div class="card">
-                      <img src="images/wind.jpg" class="card-img-top" alt="...">
-                  <h5 class="card-title"> ..°C </h5>
+          </div>
+          <div class="row p-1 g-1">
+            <div class="col-8 p-1">
+              <div class="card">
+                <img src="images/sun.jpg" class="card-img-top" alt="Weather" />
+                <div class="card-body">
+                  <h5 class="card-title">
+                      <span id="current-temp"> ... </span> 
+                      <span class="units"><a id="celsius" href="">°C</a>/<a id="fahrenheit" href="">°F</a></span>
+                  </h5>
+                  <h6 id="description">...</h6>
+                  <h6 class="card-subtitle text-muted realTime">../..</h6>                           
+                  <p class="card-text">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          <div class="row">
+                              <div class="col-6">Humidity  </div>
+                              <div id="humidity" class="col-6"> ...%
+                                </div>
+                                </div>
+                        </li>
+                        <li class="list-group-item"> 
+                          <div class="row">
+                              <div class="col-6">Pressure  </div>
+                              <div id="pressure" class="col-6"> ... hPa
+                                </div>
+                                </div>
+                        </li>
+                        <li class="list-group-item" >
+                          <div class="row">
+                              <div class="col-6">Wind  </div>
+                              <div id="wind-speed" class="col-6"> ... m/s     </div>
+                                </div>
+                        </li>
+                        <li class="list-group-item" >
+                          <div class="row">
+                              <div class="col-6">Sunrise  </div>
+                              <div id="sunrise" class="col-6"> .. : ..     </div>
+                                </div>
+                        </li>
+                        <li class="list-group-item" >
+                          <div class="row">
+                              <div class="col-6">Sunset  </div>
+                              <div id="sunset" class="col-6"> .. : ..    </div>
+                                </div>
+                        </li>
+                    </ul>
+                  </p>
                 </div>
+              </div>
             </div>
-            <div class="row p-1 g-1">
-                <div class="card">
-                      <img src="images/sun-cloud.jpg" class="card-img-top" alt="...">
-                  <h5 class="card-title"> ..°C </h5>
-                </div>
-            </div>
-            
+            <div class="col-4">
+              <div class="row p-1 g-1">
+                  <div class="card">
+                        <img src="images/cloud.jpg" class="card-img-top" alt="...">
+                    <h5 class="card-title"> ..°C </h5>
+                  </div>
+              </div>
+              <div class="row p-1 g-1">
+                  <div class="card">
+                        <img src="images/snow.jpg" class="card-img-top" alt="...">
+                    <h5 class="card-title"> ..°C </h5>
+                  </div>
+              </div>
+              <div class="row p-1 g-1">
+                  <div class="card">
+                        <img src="images/wind.jpg" class="card-img-top" alt="...">
+                    <h5 class="card-title"> ..°C </h5>
+                  </div>
+              </div>
+              <div class="row p-1 g-1">
+                  <div class="card">
+                        <img src="images/sun-cloud.jpg" class="card-img-top" alt="...">
+                    <h5 class="card-title"> ..°C </h5>
+                  </div>
+              </div>
+              
+          </div>
         </div>
-      </div>
-      <small><a href="https://github.com/HaniehAbdolahi/WeatherApp">source-code</a> by Hanieh Abdolahi</small>
+        <small><a href="https://github.com/HaniehAbdolahi/WeatherApp">source-code</a> by Hanieh Abdolahi</small>
+     </form>
     </div>
     <script src="src/App.js"></script>
   </body>

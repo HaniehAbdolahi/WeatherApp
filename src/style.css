@@ -7,9 +7,16 @@ img {
   margin: 5px auto;
   border-radius: 100%;
 }
-#current-temp{
+#current-temp {
   font-size: 30px;
   line-height: 28px;
+}
+#city-name,
+#search-box {
+  text-transform: capitalize;
+}
+#description {
+  text-transform: capitalize;
 }
 .weatherApp {
   max-width: 600px;
@@ -22,4 +29,7 @@ img {
 .weatherApp .units {
   position: relative;
   top: -20px;
+}
+.weatherApp:first-letter {
+  text-transform: capitalize;
 }
