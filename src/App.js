@@ -99,6 +99,10 @@ function showDescription(currentDescription) {
   let description = document.querySelector("#description");
   description.innerHTML = currentDescription;
 }
+function showCity(cityName) {
+  let cityLable = document.querySelector("#city-name");
+  cityLable.innerHTML = cityName;
+}
 
 function showTemperature(response) {
   console.log(response);
@@ -110,14 +114,14 @@ function showTemperature(response) {
   changeHumidity(response.data.main.humidity);
   changeSunParameter(response.data.sys.sunrise, response.data.sys.sunset);
   showDayAndTime(response.dt);
-  console.log(response.data.weather[0].description);
   showDescription(response.data.weather[0].description);
+  showCity(response.name);
 }
-function showCity(event) {
+function showCurrentWeatherWithCityName(event) {
   event.preventDefault();
   let cityName = document.querySelector("#search-box").value;
-  let cityLable = document.querySelector("#city-name");
-  cityLable.innerHTML = cityName;
+  showCity(cityName);
+
   let apiKey = "b1d29bbfe9e2b56beb480695b0af6622";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
 
@@ -125,12 +129,19 @@ function showCity(event) {
 }
 let tForm = document.querySelector("#temp-form");
 if (tForm != null) {
-  tForm.addEventListener("submit", showCity);
+  tForm.addEventListener("submit", showCurrentWeatherWithCityName);
 }
 
 /************************************************************************/
 // Show temperature and call api by current location
 /************************************************************************/
+function showCurrentWeather(lat, lon) {
+  let apiKey = "b1d29bbfe9e2b56beb480695b0af6622";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(showTemperature);
+}
+
 function findLocation() {
   function handlePosition(position) {
     let lat = position.coords.latitude;
@@ -139,12 +150,6 @@ function findLocation() {
   }
 
   navigator.geolocation.getCurrentPosition(handlePosition);
-}
-function showCurrentWeather(lat, lon) {
-  let apiKey = "b1d29bbfe9e2b56beb480695b0af6622";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
-  axios.get(apiUrl).then(showTemperature);
 }
 
 let currentButton = document.querySelector("#current-location");
