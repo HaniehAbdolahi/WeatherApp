@@ -25,18 +25,22 @@ function changeTempurature(temp) {
 }
 
 let celsiusLink = document.querySelector("#celsius");
+let fahrenheitLink = document.querySelector("#fahrenheit");
+
 if (celsiusLink !== null) {
   celsiusLink.addEventListener("click", function (event) {
     event.preventDefault();
-
+    celsiusLink.classList.add("activeLink");
+    fahrenheitLink.classList.remove("activeLink");
     changeTempurature(showTempAsCelsius(degree.innerHTML));
   });
 }
 
-let fahrenheitLink = document.querySelector("#fahrenheit");
 if (fahrenheitLink != null) {
   fahrenheitLink.addEventListener("click", function (event) {
     event.preventDefault();
+    fahrenheitLink.classList.add("activeLink");
+    celsiusLink.classList.remove("activeLink");
     changeTempurature(showTempAsFahrenheit(degree.innerHTML));
   });
 }
@@ -107,7 +111,6 @@ function showCity(cityName) {
 }
 
 function showTemperature(response) {
-  console.log(response);
   let temperature = response.data.main.temp;
   temperature = Math.round(temperature);
   changeTempurature(temperature);
