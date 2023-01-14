@@ -1,5 +1,25 @@
+body {
+  font-family: "Lobster Two", cursive;
+}
 img {
   display: block;
   max-width: 50%;
-  margin: auto;
+  margin: 5px auto;
+  border-radius: 100%;
+}
+#current-temp{
+  font-size: 30px;
+  line-height: 28px;
+}
+.weatherApp {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid rgb(44, 44, 203);
+  border-radius: 10px;
+  background-color: rgb(225, 247, 247);
+}
+.weatherApp .units {
+  position: relative;
+  top: -20px;
 }
