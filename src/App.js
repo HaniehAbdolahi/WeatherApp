@@ -102,6 +102,8 @@ function showDescription(currentDescription) {
 function showCity(cityName) {
   let cityLable = document.querySelector("#city-name");
   cityLable.innerHTML = cityName;
+  let cityNameSearchBox = document.querySelector("#search-box");
+  cityNameSearchBox.value = cityName;
 }
 
 function showTemperature(response) {
