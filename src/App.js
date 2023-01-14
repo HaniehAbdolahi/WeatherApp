@@ -115,7 +115,7 @@ function showTemperature(response) {
   changeSunParameter(response.data.sys.sunrise, response.data.sys.sunset);
   showDayAndTime(response.dt);
   showDescription(response.data.weather[0].description);
-  showCity(response.name);
+  showCity(response.data.name);
 }
 function showCurrentWeatherWithCityName(event) {
   event.preventDefault();
