@@ -21,7 +21,7 @@ function showTempAsCelsius(temp) {
   }
 }
 function changeTempurature(temp) {
-  degree.innerHTML = temp;
+  degree.innerHTML = Math.round(temp);
 }
 
 let celsiusLink = document.querySelector("#celsius");
@@ -109,8 +109,15 @@ function showCity(cityName) {
   let cityNameSearchBox = document.querySelector("#search-box");
   cityNameSearchBox.value = cityName;
 }
+function ChangeImage(code, description) {
+  let image = document.querySelector("#img-icon");
+  let iconUrl = `http://openweathermap.org/img/wn/${code}@2x.png`;
+  image.setAttribute("src", iconUrl);
+  image.setAttribute("alt", description);
+}
 
 function showTemperature(response) {
+  //console.log(response);
   let temperature = response.data.main.temp;
   temperature = Math.round(temperature);
   changeTempurature(temperature);
@@ -121,6 +128,7 @@ function showTemperature(response) {
   showDayAndTime(response.dt);
   showDescription(response.data.weather[0].description);
   showCity(response.data.name);
+  ChangeImage(response.data.weather[0].icon, response.data.weather[0].value);
 }
 function showCurrentWeatherWithCityName(event) {
   event.preventDefault();
