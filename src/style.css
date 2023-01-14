@@ -39,6 +39,7 @@ img {
 
 .activeLink {
   color: black;
+  cursor: default;
   font-size: 22px;
   text-decoration: none;
 }

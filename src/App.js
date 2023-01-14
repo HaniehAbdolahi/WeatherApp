@@ -7,7 +7,7 @@ let flag = "c";
 function showTempAsFahrenheit(temp) {
   if (flag !== "f") {
     flag = "f";
-    return temp * 1.8;
+    return (temp * 9) / 5 + 32;
   } else {
     return temp;
   }
@@ -15,7 +15,7 @@ function showTempAsFahrenheit(temp) {
 function showTempAsCelsius(temp) {
   if (flag !== "c") {
     flag = "c";
-    return temp / 1.8;
+    return ((temp - 32) * 5) / 9;
   } else {
     return temp;
   }
