@@ -48,7 +48,7 @@ if (fahrenheitLink != null) {
 // Show current date and time
 /************************************************************************/
 function formatDate(date) {
-  return `${date.getMonth() + 1}/${date.getUTCDay() + 1}/${date.getFullYear()}`;
+  return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 }
 function formatTime(date) {
   return `${date.getHours()}:${date.getMinutes()}`;
@@ -130,7 +130,8 @@ function showTemperature(response) {
   showCity(response.data.name);
   ChangeImage(response.data.weather[0].icon, response.data.weather[0].value);
   console.log(response.data.coord);
-  getForcast(response.data.coord);
+  // getForcast(response.data.coord);
+  displayForcast();
 }
 function showCurrentWeatherWithCityName(event) {
   event.preventDefault();
@@ -172,9 +173,9 @@ currentButton.addEventListener("click", findLocation);
 /************************************************************************/
 //display forcast
 
-function displayForcast(response) {
-  console.log(response.data);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+function displayForcast() {
+  //console.log(response.data);
+  let days = ["Sun", "Mon", "Tue", "Wed" /*, "Thu", "Fri", "Sat"*/];
 
   let forcastTemperature = document.querySelector("#weather-forcast");
 
@@ -195,6 +196,7 @@ function displayForcast(response) {
 }
 function getForcast(coordinate) {
   let apiKey = "b1d29bbfe9e2b56beb480695b0af6622";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinate.lat}&lon=${coordinate.lon}&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinate.lat}&lon=${coordinate.lon}&appid=${apiKey}`;
+  console.log(apiUrl);
   axios.get(apiUrl).then(displayForcast);
 }
