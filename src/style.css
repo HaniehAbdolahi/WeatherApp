@@ -46,9 +46,10 @@ img {
 .weather-forcast{
   text-align: center;
 }
+/*
 .weather-forcast-card{
   height: 10.5%;
-}
+}*/
 .weather-forcast-img{
  height: 40%;
 }

@@ -129,6 +129,7 @@ function showTemperature(response) {
   showDescription(response.data.weather[0].description);
   showCity(response.data.name);
   ChangeImage(response.data.weather[0].icon, response.data.weather[0].value);
+  displayForcast();
 }
 function showCurrentWeatherWithCityName(event) {
   event.preventDefault();
@@ -168,3 +169,35 @@ function findLocation() {
 let currentButton = document.querySelector("#current-location");
 currentButton.addEventListener("click", findLocation);
 /************************************************************************/
+//display forcast
+
+function displayForcast() {
+  let days = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+  ];
+
+
+  let forcastTemperature = document.querySelector("#weather-forcast");
+
+  days.forEach(function(day){
+      let forcastHTML = `
+              <div class="row p-1 g-1 weather-forcast-card ">
+                  <div class="card">
+                    <div class="weather-forcast-date">${day}</div>
+                    <img src="images/cloud.jpg" class="card-img-top weather-forcast-img" alt="...">
+                    <div class="weather-forcast-temp">
+                    <span class="weather-forcast-temp-max">18°</span>
+                    <span class="weather-forcast-temp-min">12°</span>   
+                  </div>
+                </div>
+              </div>`;
+    forcastTemperature.innerHTML += forcastHTML;
+  });
+}
+
