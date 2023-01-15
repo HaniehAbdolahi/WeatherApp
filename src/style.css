@@ -43,3 +43,24 @@ img {
   font-size: 22px;
   text-decoration: none;
 }
+.weather-forcast{
+  text-align: center;
+}
+.weather-forcast-card{
+  height: 10.5%;
+}
+.weather-forcast-img{
+ height: 40%;
+}
+.weather-forcast-date{
+font-size: 16px;
+opacity: 0.5;
+padding: 0;
+}
+.weather-forcast-temp-min{
+font-size: 13px;
+opacity: 0.5;
+}
+.weather-forcast-temp-max{
+font-size: 13px;
+}
