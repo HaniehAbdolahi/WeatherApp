@@ -178,9 +178,9 @@ function displayForcast() {
   let days = ["Sun", "Mon", "Tue", "Wed" /*, "Thu", "Fri", "Sat"*/];
 
   let forcastTemperature = document.querySelector("#weather-forcast");
-
+  forcastTemperature.innerHTML = ``;
   days.forEach(function (day) {
-    let forcastHTML = `
+   let forcastHTML = `
               <div class="row p-1 g-1 weather-forcast-card ">
                   <div class="card">
                     <div class="weather-forcast-date">${day}</div>
@@ -191,7 +191,7 @@ function displayForcast() {
                   </div>
                 </div>
               </div>`;
-    forcastTemperature.innerHTML += forcastHTML;
+      forcastTemperature.innerHTML += forcastHTML;
   });
 }
 function getForcast(coordinate) {
