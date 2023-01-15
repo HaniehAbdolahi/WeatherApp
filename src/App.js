@@ -129,7 +129,8 @@ function showTemperature(response) {
   showDescription(response.data.weather[0].description);
   showCity(response.data.name);
   ChangeImage(response.data.weather[0].icon, response.data.weather[0].value);
-  displayForcast();
+  console.log(response.data.coord);
+  getForcast(response.data.coord);
 }
 function showCurrentWeatherWithCityName(event) {
   event.preventDefault();
@@ -171,22 +172,14 @@ currentButton.addEventListener("click", findLocation);
 /************************************************************************/
 //display forcast
 
-function displayForcast() {
-  let days = [
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-  ];
-
+function displayForcast(response) {
+  console.log(response.data);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   let forcastTemperature = document.querySelector("#weather-forcast");
 
-  days.forEach(function(day){
-      let forcastHTML = `
+  days.forEach(function (day) {
+    let forcastHTML = `
               <div class="row p-1 g-1 weather-forcast-card ">
                   <div class="card">
                     <div class="weather-forcast-date">${day}</div>
@@ -200,4 +193,8 @@ function displayForcast() {
     forcastTemperature.innerHTML += forcastHTML;
   });
 }
-
+function getForcast(coordinate) {
+  let apiKey = "b1d29bbfe9e2b56beb480695b0af6622";
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinate.lat}&lon=${coordinate.lon}&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayForcast);
+}
