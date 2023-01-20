@@ -4,10 +4,33 @@
 let degree = document.querySelector("#current-temp");
 let flag = "c";
 
+function changeUnit(unit, cls) {
+  let weatherfields = document.querySelectorAll(`${cls}`);
+  if (unit == "f") {
+    weatherfields.forEach(function (field) {
+      let temp = field.innerHTML;
+      field.innerHTML = cilsiusToFahrenheit(temp);
+    });
+  }
+  if (unit == "c") {
+    weatherfields.forEach(function (field) {
+      let temp = field.innerHTML;
+      field.innerHTML = FahrenheitToCilsius(temp);
+    });
+  }
+}
+function cilsiusToFahrenheit(c) {
+  return Math.round((c * 9) / 5 + 32);
+}
+
+function FahrenheitToCilsius(f) {
+  return Math.round(((f - 32) * 5) / 9);
+}
+
 function showTempAsFahrenheit(temp) {
   if (flag !== "f") {
     flag = "f";
-    return (temp * 9) / 5 + 32;
+    return cilsiusToFahrenheit(temp);
   } else {
     return temp;
   }
@@ -15,13 +38,13 @@ function showTempAsFahrenheit(temp) {
 function showTempAsCelsius(temp) {
   if (flag !== "c") {
     flag = "c";
-    return ((temp - 32) * 5) / 9;
+    return FahrenheitToCilsius(temp);
   } else {
     return temp;
   }
 }
 function changeTempurature(temp) {
-  degree.innerHTML = Math.round(temp);
+  degree.innerHTML = temp;
 }
 
 let celsiusLink = document.querySelector("#celsius");
@@ -33,6 +56,8 @@ if (celsiusLink !== null) {
     celsiusLink.classList.add("activeLink");
     fahrenheitLink.classList.remove("activeLink");
     changeTempurature(showTempAsCelsius(degree.innerHTML));
+    changeUnit("c", ".weather-forcast-temp-max");
+    changeUnit("c", ".weather-forcast-temp-min");
   });
 }
 
@@ -42,6 +67,8 @@ if (fahrenheitLink != null) {
     fahrenheitLink.classList.add("activeLink");
     celsiusLink.classList.remove("activeLink");
     changeTempurature(showTempAsFahrenheit(degree.innerHTML));
+    changeUnit("f", ".weather-forcast-temp-max");
+    changeUnit("f", ".weather-forcast-temp-min");
   });
 }
 /************************************************************************/
@@ -130,7 +157,6 @@ function showTemperature(response) {
   showCity(response.data.name);
   ChangeImage(response.data.weather[0].icon, response.data.weather[0].value);
   getForcast(response.data.coord);
-  // displayForcast();
 }
 function showCurrentWeatherWithCityName(event) {
   event.preventDefault();
@@ -192,10 +218,10 @@ function displayForcast(response) {
                     <div class="weather-forcast-temp">
                     <span class="weather-forcast-temp-max">${Math.round(
                       forcastDay.temp.max
-                    )}°</span>
+                    )}</span><span>°</span>
                     <span class="weather-forcast-temp-min">${Math.round(
                       forcastDay.temp.min
-                    )}°</span>   
+                    )}</span><span>°</span>   
                   </div>
                 </div>
               </div>`;
