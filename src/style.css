@@ -1,5 +1,5 @@
 body {
-  font-family: "Lobster Two", cursive;
+  font-family: "Roboto", sans-serif;
 }
 img {
   display: block;
@@ -18,6 +18,10 @@ img {
 #description {
   text-transform: capitalize;
 }
+#weather-main {
+  height: 100%;
+}
+
 .list-group-item {
   padding-left: 0px;
 }
@@ -43,25 +47,23 @@ img {
   font-size: 22px;
   text-decoration: none;
 }
-.weather-forcast{
+.weather-forcast {
   text-align: center;
 }
-/*
-.weather-forcast-card{
-  height: 10.5%;
-}*/
-.weather-forcast-img{
- height: 40%;
+
+.weather-forcast-img {
+  height: 45%;
+  width: 45%;
 }
-.weather-forcast-date{
-font-size: 16px;
-opacity: 0.5;
-padding: 0;
+.weather-forcast-date {
+  font-size: 16px;
+  opacity: 0.5;
+  padding: 0;
 }
-.weather-forcast-temp-min{
-font-size: 13px;
-opacity: 0.5;
+.weather-forcast-temp-min {
+  font-size: 13px;
+  opacity: 0.5;
 }
-.weather-forcast-temp-max{
-font-size: 13px;
+.weather-forcast-temp-max {
+  font-size: 13px;
 }

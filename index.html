@@ -12,7 +12,7 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/style.css" />
     <script
       src="https://kit.fontawesome.com/9bcc7748b9.js"
@@ -50,7 +50,7 @@
             </div>
             <div class="col-4">Date : <span class="realDate"></span></div>
           </div>
-          <div class="row p-1">
+          <div class="row px-1 py-0">
             <div class="col-8">
               Weather in <strong class="" id="city-name">...</strong>
             </div>
@@ -58,8 +58,8 @@
               <h6 class="title">Future of weather</h6>
             </div>
           </div>
-          <div class="row p-1 g-1">
-            <div class="col-8 p-1">
+          <div class="row py-0 g-1">
+            <div id="weather-main" class="weather-main col-8 p-1">
               <div class="card">
                 <img src="images/sun.jpg" id="img-icon" class="card-img-top" alt="Weather" />
                 <div class="card-body">
@@ -106,14 +106,53 @@
                     </ul>
                   </p>
                 </div>
-              </div>
+              </div>                       
             </div>
             <div id="weather-forcast" class="weather-forcast col-4">
-                  
+                   <div class="row p-1 g-1 weather-forcast-card ">
+                  <div class="card">
+                    <div class="weather-forcast-date p-1 g-1">...</div>
+                    <img src="images/cloud.jpg" class="card-img-top weather-forcast-img" alt="...">
+                    <div class="weather-forcast-temp">
+                    <span class="weather-forcast-temp-max">...°</span>
+                    <span class="weather-forcast-temp-min">...°</span>   
+                  </div>
+                </div>
+              </div>
+              <div class="row p-1 g-1 weather-forcast-card ">
+                  <div class="card">
+                    <div class="weather-forcast-date p-1 g-1">...</div>
+                    <img src="images/wind.jpg" class="card-img-top weather-forcast-img" alt="...">
+                    <div class="weather-forcast-temp">
+                    <span class="weather-forcast-temp-max">...°</span>
+                    <span class="weather-forcast-temp-min">...°</span>   
+                  </div>
+                </div>
+              </div>
+                <div class="row p-1 g-1 weather-forcast-card ">
+                  <div class="card">
+                    <div class="weather-forcast-date p-1 g-1">...</div>
+                    <img src="images/sun-cloud.jpg" class="card-img-top weather-forcast-img" alt="...">
+                    <div class="weather-forcast-temp">
+                    <span class="weather-forcast-temp-max">...°</span>
+                    <span class="weather-forcast-temp-min">...°</span>   
+                  </div>
+                </div>
+              </div>
+                <div class="row p-1 g-1 weather-forcast-card ">
+                  <div class="card">
+                    <div class="weather-forcast-date p-1 g-1">...</div>
+                    <img src="images/rain.jpg" class="card-img-top weather-forcast-img" alt="...">
+                    <div class="weather-forcast-temp">
+                    <span class="weather-forcast-temp-max">...°</span>
+                    <span class="weather-forcast-temp-min">...°</span>   
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
+      </form>
         <small><a href="https://github.com/HaniehAbdolahi/WeatherApp">source-code</a> by Hanieh Abdolahi</small>
-     </form>
     </div>
    <script src="src/App.js"></script>
   </body>

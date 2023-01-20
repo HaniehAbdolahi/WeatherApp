@@ -53,8 +53,9 @@ function formatDate(date) {
 function formatTime(date) {
   return `${date.getHours()}:${date.getMinutes()}`;
 }
+
 function showDayAndTime(timestamp) {
-  let currentDate = new Date();
+  let currentDate = new Date(timestamp * 1000);
   let days = [
     "Sunday",
     "Monday",
@@ -117,7 +118,6 @@ function ChangeImage(code, description) {
 }
 
 function showTemperature(response) {
-  //console.log(response);
   let temperature = response.data.main.temp;
   temperature = Math.round(temperature);
   changeTempurature(temperature);
@@ -125,13 +125,12 @@ function showTemperature(response) {
   changePressure(response.data.main.pressure);
   changeHumidity(response.data.main.humidity);
   changeSunParameter(response.data.sys.sunrise, response.data.sys.sunset);
-  showDayAndTime(response.dt);
+  showDayAndTime(response.data.dt);
   showDescription(response.data.weather[0].description);
   showCity(response.data.name);
   ChangeImage(response.data.weather[0].icon, response.data.weather[0].value);
-  console.log(response.data.coord);
-  // getForcast(response.data.coord);
-  displayForcast();
+  getForcast(response.data.coord);
+  // displayForcast();
 }
 function showCurrentWeatherWithCityName(event) {
   event.preventDefault();
@@ -173,30 +172,39 @@ currentButton.addEventListener("click", findLocation);
 /************************************************************************/
 //display forcast
 
-function displayForcast() {
-  //console.log(response.data);
-  let days = ["Sun", "Mon", "Tue", "Wed" /*, "Thu", "Fri", "Sat"*/];
+function displayForcast(response) {
+  let forcastArray = response.data.daily;
 
   let forcastTemperature = document.querySelector("#weather-forcast");
   forcastTemperature.innerHTML = ``;
-  days.forEach(function (day) {
-   let forcastHTML = `
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  forcastArray.forEach(function (forcastDay, index) {
+    if (index < 4) {
+      let currentDate = new Date(forcastDay.dt * 1000);
+      let day = days[currentDate.getDay()];
+      let forcastHTML = `
               <div class="row p-1 g-1 weather-forcast-card ">
                   <div class="card">
-                    <div class="weather-forcast-date">${day}</div>
-                    <img src="images/cloud.jpg" class="card-img-top weather-forcast-img" alt="...">
+                    <div class="weather-forcast-date p-1 g-1">${day}</div>
+                    <img src="http://openweathermap.org/img/wn/${
+                      forcastDay.weather[0].icon
+                    }@2x.png" class="card-img-top weather-forcast-img" alt="...">
                     <div class="weather-forcast-temp">
-                    <span class="weather-forcast-temp-max">18°</span>
-                    <span class="weather-forcast-temp-min">12°</span>   
+                    <span class="weather-forcast-temp-max">${Math.round(
+                      forcastDay.temp.max
+                    )}°</span>
+                    <span class="weather-forcast-temp-min">${Math.round(
+                      forcastDay.temp.min
+                    )}°</span>   
                   </div>
                 </div>
               </div>`;
       forcastTemperature.innerHTML += forcastHTML;
+    }
   });
 }
 function getForcast(coordinate) {
-  let apiKey = "b1d29bbfe9e2b56beb480695b0af6622";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinate.lat}&lon=${coordinate.lon}&appid=${apiKey}`;
-  console.log(apiUrl);
+  let apiKey = "cb286bad3607984b41ed10c8de5cf00e";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinate.lat}&lon=${coordinate.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForcast);
 }
