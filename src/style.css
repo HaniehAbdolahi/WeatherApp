@@ -8,7 +8,7 @@ img {
   border-radius: 100%;
 }
 #current-temp {
-  font-size: 30px;
+  font-size: 28px;
   line-height: 28px;
 }
 #city-name,
@@ -24,6 +24,7 @@ img {
 
 .list-group-item {
   padding-left: 0px;
+  font-size: 15px;
 }
 .weatherApp {
   max-width: 600px;
