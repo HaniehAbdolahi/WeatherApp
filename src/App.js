@@ -30,6 +30,8 @@ function FahrenheitToCilsius(f) {
 function showTempAsFahrenheit(temp) {
   if (flag !== "f") {
     flag = "f";
+    changeUnit("f", ".weather-forcast-temp-max");
+    changeUnit("f", ".weather-forcast-temp-min");
     return cilsiusToFahrenheit(temp);
   } else {
     return temp;
@@ -38,6 +40,8 @@ function showTempAsFahrenheit(temp) {
 function showTempAsCelsius(temp) {
   if (flag !== "c") {
     flag = "c";
+    changeUnit("c", ".weather-forcast-temp-max");
+    changeUnit("c", ".weather-forcast-temp-min");
     return FahrenheitToCilsius(temp);
   } else {
     return temp;
@@ -56,8 +60,6 @@ if (celsiusLink !== null) {
     celsiusLink.classList.add("activeLink");
     fahrenheitLink.classList.remove("activeLink");
     changeTempurature(showTempAsCelsius(degree.innerHTML));
-    changeUnit("c", ".weather-forcast-temp-max");
-    changeUnit("c", ".weather-forcast-temp-min");
   });
 }
 
@@ -67,8 +69,6 @@ if (fahrenheitLink != null) {
     fahrenheitLink.classList.add("activeLink");
     celsiusLink.classList.remove("activeLink");
     changeTempurature(showTempAsFahrenheit(degree.innerHTML));
-    changeUnit("f", ".weather-forcast-temp-max");
-    changeUnit("f", ".weather-forcast-temp-min");
   });
 }
 /************************************************************************/
