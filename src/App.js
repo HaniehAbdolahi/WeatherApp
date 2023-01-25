@@ -11,8 +11,7 @@ function changeUnit(unit, cls) {
       let temp = field.innerHTML;
       field.innerHTML = cilsiusToFahrenheit(temp);
     });
-  }
-  if (unit == "c") {
+  } else if (unit == "c") {
     weatherfields.forEach(function (field) {
       let temp = field.innerHTML;
       field.innerHTML = FahrenheitToCilsius(temp);
